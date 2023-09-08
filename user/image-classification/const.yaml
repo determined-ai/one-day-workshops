@@ -1,0 +1,27 @@
+name: dogcat_single
+data:
+#    dir: /scratch/mlde/dataset/dogs-and-cats/train
+    dir: /run/determined/workdir/shared_fs/train
+labels:
+  - "Single GPU"
+hyperparameters:
+    learning_rate: .005
+    global_batch_size: 4
+    weight_decay: 1e-4
+    nesterov: True
+min_validation_period:
+    batches: 800
+searcher:
+    name: single
+    metric: accuracy
+    max_length:
+        batches: 4096   # 16384 images
+    smaller_is_better: false
+entrypoint: model_def:DogCatModel
+resources:
+    slots_per_trial: 1
+max_restarts: 0
+profiling:
+    enabled: true
+    begin_on_batch: 0
+    end_after_batch: null
