@@ -1,0 +1,19 @@
+pipeline:
+  name: new-branch_image_tracer
+description: A pipeline that performs image edge detection by using the OpenCV library.
+input:
+  pfs:
+    repo: raw_videos_and_images
+    glob: "/*.{png,jpg,jpeg}"
+    branch: "new-branch"
+transform:
+  image: lbliii/image_tracer:1.0.8
+  cmd:
+    - python3
+    - /image_tracer.py
+    - --input
+    - /pfs/raw_videos_and_images
+    - --output
+    - /pfs/out/
+autoscaling: true
+output_branch: "new-branch"
