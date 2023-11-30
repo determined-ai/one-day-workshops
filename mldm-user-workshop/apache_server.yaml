@@ -1,0 +1,20 @@
+pipeline:
+  name: apache_server
+  description: Serve HTML Page on Apache.
+input:
+  pfs:
+    glob: "/"
+    repo: content_collager
+    name: in
+transform:
+  image: httpd:2.4
+  cmd:
+    - /bin/sh
+    - -c
+    - /usr/local/apache2/bin/apachectl;cp -r /pfs/in/* /usr/local/apache2/htdocs/
+service:
+  external_port: 8080
+  internal_port: 80
+  type: "LoadBalancer"
+parallelism_spec: 
+  constant: 1
