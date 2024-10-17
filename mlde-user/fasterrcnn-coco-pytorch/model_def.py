@@ -91,10 +91,13 @@ class ObjectDetectionTrial(PyTorchTrial):
         images, targets = batch
         loss_dict = self.model(list(images), list(targets))
 
-        self.context.backward(loss_dict["loss_box_reg"])
+        # From original Object Detection demo experiment
+        total_loss = sum([loss_dict[l] for l in loss_dict])
+        
+        self.context.backward(total_loss)
         self.context.step_optimizer(self.optimizer)
 
-        return {"loss": loss_dict["loss_box_reg"]}
+        return {"loss": total_loss}
 
     def evaluate_batch(self, batch: TorchData) -> Dict[str, Any]:
         images, targets = batch
