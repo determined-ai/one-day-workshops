@@ -215,6 +215,7 @@ def main(core_context):
     for epoch_idx in range(0, args.epochs):
         # Docs snippet start: calculate steps completed
         # NEW: Calculate steps_completed for plotting test metrics.
+        # steps_completed = current epoch * number of batches in an epoch
         steps_completed = epoch_idx * len(train_loader)
         # Docs snippet end: calculate steps completed
 
