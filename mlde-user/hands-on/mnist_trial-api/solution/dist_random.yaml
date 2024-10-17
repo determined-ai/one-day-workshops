@@ -1,6 +1,5 @@
-name: mnist_pytorch_adaptive
+name: mnist_pytorch_dist_random_search
 hyperparameters:
-  global_batch_size: 64
   learning_rate:
     type: double
     minval: .0001
@@ -22,10 +21,12 @@ hyperparameters:
     minval: .2
     maxval: .8
 searcher:
-  name: adaptive_asha
-  metric: validation_loss
+  name: random
+  metric: accuracy
   smaller_is_better: true
-  max_trials: 16
+  max_trials: 2
   max_length:
-    batches: 937 #60,000 training images with batch size 64
+    epochs: 1
+resources:
+  slots_per_trial: 1
 entrypoint: model_def:MNistTrial
