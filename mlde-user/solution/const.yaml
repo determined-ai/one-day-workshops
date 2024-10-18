@@ -1,4 +1,7 @@
 name: mnist_keras_const
+environment:
+  image:
+    cuda: determinedai/pytorch-tensorflow-cuda:0.33.0
 hyperparameters:
     global_batch_size: 128
     image_size: 28
