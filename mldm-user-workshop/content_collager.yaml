@@ -1,6 +1,6 @@
 pipeline:
   name: content_collager
-  description: A pipeline that creates a static HTML collage.
+description: A pipeline that creates a static HTML collage.
 input:
   pfs:
     glob: "/"
