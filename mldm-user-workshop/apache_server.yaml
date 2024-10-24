@@ -1,6 +1,6 @@
 pipeline:
   name: apache_server
-  description: Serve HTML Page on Apache.
+description: Serve HTML Page on Apache.
 input:
   pfs:
     glob: "/"
